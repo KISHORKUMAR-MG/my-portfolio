@@ -1,38 +1,219 @@
-.App {
-  text-align: center;
+/* --- Import Gen Z Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg: #0a0a0a;          /* Matte Black */
+  --card-bg: #161616;     /* Dark Grey */
+  --text: #ededed;        /* Off White */
+  --text-dim: #888888;
+  --accent: #ccff00;      /* ACID GREEN (The Gen Z Color) */
+  --accent-2: #7000ff;    /* Electric Purple */
+  --radius: 24px;         /* Smooth Corners */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* --- The Bento Grid Layout --- */
+.main-wrapper {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+  grid-auto-rows: minmax(180px, auto);
+  gap: 16px;
+}
+
+/* --- Generic Module Styles --- */
+.module {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: border 0.3s;
+}
+
+.module:hover {
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- 1. HERO MODULE (Top Left, Big) --- */
+.hero-module {
+  grid-column: span 2;
+  grid-row: span 2;
+  justify-content: space-between;
+  background: radial-gradient(circle at top right, #1a1a1a 0%, #161616 100%);
+}
+
+.status-pill {
+  background: rgba(204, 255, 0, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(204, 255, 0, 0.2);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  width: fit-content;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+
+h1 { font-size: 3.5rem; line-height: 0.9; font-weight: 700; letter-spacing: -2px; }
+.accent { color: var(--accent); }
+.hero-sub { font-family: 'JetBrains Mono', monospace; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+
+/* --- 2. LOCATION & SOCIALS --- */
+.location-module {
+  grid-column: span 1;
+  justify-content: space-between;
+  background: #111;
+}
+.location-module h3 { font-size: 1.2rem; }
+.location-module p { font-size: 0.9rem; color: var(--text-dim); }
+
+.social-module {
+  grid-column: span 1;
+  background: var(--accent);
+  color: #000;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.social-module p { font-weight: 800; font-size: 0.9rem; letter-spacing: 1px; }
+.social-row { display: flex; gap: 15px; }
+
+/* --- 3. PROJECTS --- */
+.project-module {
+  grid-column: span 2;
+  justify-content: space-between;
+  min-height: 250px;
+  cursor: pointer;
+}
+
+.project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+
+.arrow { opacity: 0.5; transition: 0.3s; }
+.project-module:hover .arrow { opacity: 1; transform: translate(5px, -5px); }
+
+.project-content h2 { font-size: 2rem; margin-bottom: 10px; font-weight: 600; letter-spacing: -1px; }
+.project-content p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 20px; max-width: 90%; }
+
+.tags { display: flex; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+.tags span { background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 4px; }
+
+.tech-row { display: flex; gap: 10px; }
+.tech { 
+  border: 1px solid var(--text-dim); padding: 4px 12px; 
+  border-radius: 50px; font-size: 0.8rem; 
+}
+
+/* Light Mode Card Variant */
+.light-bg { background: #e0e0e0; color: #000; }
+.light-bg p { color: #444; }
+.light-bg .tags span { background: rgba(0,0,0,0.1); }
+.light-bg .tech { border-color: #000; }
+
+/* --- 4. STACK --- */
+.stack-module {
+  grid-column: span 1;
+  grid-row: span 2;
+  background: #0f0f0f;
+}
+.stack-module h2 { font-size: 1.2rem; margin-bottom: 20px; color: var(--text-dim); }
+.stack-list { display: flex; flex-direction: column; gap: 15px; }
+.stack-item { 
+  display: flex; align-items: center; gap: 12px; 
+  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+}
+.accent-icon { color: var(--accent); }
+
+/* --- 5. BIO --- */
+.bio-module {
+  grid-column: span 2;
+  justify-content: center;
+  text-align: center;
+}
+.bio-text { font-size: 1.2rem; line-height: 1.5; color: var(--text); }
+.highlight { color: var(--accent); font-weight: bold; }
+.grad-year { 
+  margin-top: 20px; font-family: 'JetBrains Mono'; 
+  font-size: 0.8rem; color: var(--text-dim); border-top: 1px solid #333; padding-top: 10px; width: 100%;
+}
+
+/* --- 6. CONTACT --- */
+.contact-module {
+  grid-column: span 1;
+  background: var(--accent-2);
   color: white;
+  overflow: hidden;
+  padding: 0; /* Remove padding for marquee */
 }
 
-.App-link {
-  color: #61dafb;
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 15px 0;
+  background: rgba(0,0,0,0.2);
+  font-family: 'JetBrains Mono';
+  font-weight: 700;
+}
+.marquee span { display: inline-block; animation: scroll 10s linear infinite; }
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.contact-action {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.copy-btn, .mail-btn {
+  background: rgba(0,0,0,0.3);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 100%;
+  display: flex; justify-content: center; align-items: center; gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  transition: 0.2s;
+}
+
+.copy-btn:hover, .mail-btn:hover { background: white; color: var(--accent-2); }
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+  .bento-grid { display: flex; flex-direction: column; }
+  h1 { font-size: 3rem; }
+  .module { min-height: auto; }
+  .hero-module { min-height: 300px; }
+  .project-module { min-height: auto; padding-bottom: 40px; }
 }
