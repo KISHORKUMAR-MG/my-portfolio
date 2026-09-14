@@ -334,11 +334,11 @@ const Portfolio = () => {
             "I don't just write code; I engineer logic.
             Currently obsessed with{" "}
             <span className="highlight">
-              System Architecture
+              Software Development
             </span>{" "}
             and{" "}
             <span className="highlight">
-              Backend Efficiency
+              Full Stack Development
             </span>."
           </p>
 
