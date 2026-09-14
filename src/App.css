@@ -1,17 +1,21 @@
-/* --- Import Gen Z Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;600;700&display=swap');
 
 :root {
-  --bg: #0a0a0a;          /* Matte Black */
-  --card-bg: #161616;     /* Dark Grey */
-  --text: #ededed;        /* Off White */
+  --bg: #0a0a0a;
+  --card-bg: #161616;
+  --text: #ededed;
   --text-dim: #888888;
-  --accent: #ccff00;      /* ACID GREEN (The Gen Z Color) */
-  --accent-2: #7000ff;    /* Electric Purple */
-  --radius: 24px;         /* Smooth Corners */
+  --accent: #ccff00;
+  --accent-2: #7000ff;
+  --radius: 24px;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* --- Global Reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   background-color: var(--bg);
@@ -24,15 +28,16 @@ body {
   padding: 40px 20px;
 }
 
-/* --- The Bento Grid Layout --- */
+/* --- Main Wrapper --- */
 .main-wrapper {
   width: 100%;
   max-width: 1200px;
 }
 
+/* --- Bento Grid Layout --- */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(180px, auto);
   gap: 16px;
 }
@@ -46,20 +51,27 @@ body {
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.03);
+  border: 1px solid rgba(255, 255, 255, 0.03);
   transition: border 0.3s;
 }
 
 .module:hover {
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* --- 1. HERO MODULE (Top Left, Big) --- */
+/* =========================================================
+   1. HERO MODULE
+   ========================================================= */
+
 .hero-module {
   grid-column: span 2;
   grid-row: span 2;
   justify-content: space-between;
-  background: radial-gradient(circle at top right, #1a1a1a 0%, #161616 100%);
+  background: radial-gradient(
+    circle at top right,
+    #1a1a1a 0%,
+    #161616 100%
+  );
 }
 
 .status-pill {
@@ -71,23 +83,65 @@ body {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   width: fit-content;
-  display: flex; align-items: center; gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent);
+}
 
-h1 { font-size: 3.5rem; line-height: 0.9; font-weight: 700; letter-spacing: -2px; }
-.accent { color: var(--accent); }
-.hero-sub { font-family: 'JetBrains Mono', monospace; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+h1 {
+  font-size: 3.5rem;
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
 
-/* --- 2. LOCATION & SOCIALS --- */
+.accent {
+  color: var(--accent);
+}
+
+.hero-sub {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   2. LOCATION
+   ========================================================= */
+
 .location-module {
   grid-column: span 1;
   justify-content: space-between;
   background: #111;
 }
-.location-module h3 { font-size: 1.2rem; }
-.location-module p { font-size: 0.9rem; color: var(--text-dim); }
+
+.location-module h3 {
+  font-size: 1.2rem;
+}
+
+.location-module p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* =========================================================
+   3. SOCIALS
+   ========================================================= */
 
 .social-module {
   grid-column: span 1;
@@ -98,10 +152,33 @@ h1 { font-size: 3.5rem; line-height: 0.9; font-weight: 700; letter-spacing: -2px
   gap: 10px;
   cursor: pointer;
 }
-.social-module p { font-weight: 800; font-size: 0.9rem; letter-spacing: 1px; }
-.social-row { display: flex; gap: 15px; }
 
-/* --- 3. PROJECTS --- */
+.social-module p {
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.social-row {
+  display: flex;
+  gap: 15px;
+}
+
+.social-row a {
+  color: #000;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.social-row a:hover {
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   4. PROJECTS
+   ========================================================= */
+
 .project-module {
   grid-column: span 2;
   justify-content: space-between;
@@ -109,78 +186,216 @@ h1 { font-size: 3.5rem; line-height: 0.9; font-weight: 700; letter-spacing: -2px
   cursor: pointer;
 }
 
-.project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-
-.arrow { opacity: 0.5; transition: 0.3s; }
-.project-module:hover .arrow { opacity: 1; transform: translate(5px, -5px); }
-
-.project-content h2 { font-size: 2rem; margin-bottom: 10px; font-weight: 600; letter-spacing: -1px; }
-.project-content p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 20px; max-width: 90%; }
-
-.tags { display: flex; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
-.tags span { background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 4px; }
-
-.tech-row { display: flex; gap: 10px; }
-.tech { 
-  border: 1px solid var(--text-dim); padding: 4px 12px; 
-  border-radius: 50px; font-size: 0.8rem; 
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
 
-/* Light Mode Card Variant */
-.light-bg { background: #e0e0e0; color: #000; }
-.light-bg p { color: #444; }
-.light-bg .tags span { background: rgba(0,0,0,0.1); }
-.light-bg .tech { border-color: #000; }
+.arrow {
+  opacity: 0.5;
+  transition: 0.3s;
+}
 
-/* --- 4. STACK --- */
+.project-module:hover .arrow {
+  opacity: 1;
+  transform: translate(5px, -5px);
+}
+
+.project-content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.project-content p {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  max-width: 90%;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.tags span {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.tech-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tech {
+  border: 1px solid var(--text-dim);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+}
+
+/* --- Light Project Card --- */
+
+.light-bg {
+  background: #e0e0e0;
+  color: #000;
+}
+
+.light-bg p {
+  color: #444;
+}
+
+.light-bg .tags span {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.light-bg .tech {
+  border-color: #000;
+}
+
+/* =========================================================
+   5. SKILLS & TECHNOLOGIES
+   ========================================================= */
+
 .stack-module {
   grid-column: span 1;
   grid-row: span 2;
   background: #0f0f0f;
 }
-.stack-module h2 { font-size: 1.2rem; margin-bottom: 20px; color: var(--text-dim); }
-.stack-list { display: flex; flex-direction: column; gap: 15px; }
-.stack-item { 
-  display: flex; align-items: center; gap: 12px; 
-  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
-}
-.accent-icon { color: var(--accent); }
 
-/* --- 5. BIO --- */
+.stack-module h2 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: var(--text-dim);
+}
+
+/* Skills container */
+
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 4px;
+}
+
+/* Individual category */
+
+.skill-category {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-category h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+/* Skill tags */
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.skill-tags span {
+  display: inline-block;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+}
+
+.skill-tags span:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(204, 255, 0, 0.05);
+}
+
+/* =========================================================
+   6. BIO
+   ========================================================= */
+
 .bio-module {
   grid-column: span 2;
   justify-content: center;
   text-align: center;
 }
-.bio-text { font-size: 1.2rem; line-height: 1.5; color: var(--text); }
-.highlight { color: var(--accent); font-weight: bold; }
-.grad-year { 
-  margin-top: 20px; font-family: 'JetBrains Mono'; 
-  font-size: 0.8rem; color: var(--text-dim); border-top: 1px solid #333; padding-top: 10px; width: 100%;
+
+.bio-text {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--text);
 }
 
-/* --- 6. CONTACT --- */
+.highlight {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.grad-year {
+  margin-top: 20px;
+  font-family: 'JetBrains Mono';
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  width: 100%;
+}
+
+/* =========================================================
+   7. CONTACT
+   ========================================================= */
+
 .contact-module {
   grid-column: span 1;
   background: var(--accent-2);
   color: white;
   overflow: hidden;
-  padding: 0; /* Remove padding for marquee */
+  padding: 0;
 }
 
 .marquee {
   white-space: nowrap;
   overflow: hidden;
   padding: 15px 0;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   font-family: 'JetBrains Mono';
   font-weight: 700;
 }
-.marquee span { display: inline-block; animation: scroll 10s linear infinite; }
+
+.marquee span {
+  display: inline-block;
+  animation: scroll 10s linear infinite;
+}
 
 @keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .contact-action {
@@ -193,27 +408,125 @@ h1 { font-size: 3.5rem; line-height: 0.9; font-weight: 700; letter-spacing: -2px
   padding: 20px;
 }
 
-.copy-btn, .mail-btn {
-  background: rgba(0,0,0,0.3);
+.copy-btn,
+.mail-btn {
+  background: rgba(0, 0, 0, 0.3);
   border: none;
   color: white;
   padding: 10px 20px;
   border-radius: 50px;
   cursor: pointer;
   width: 100%;
-  display: flex; justify-content: center; align-items: center; gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   transition: 0.2s;
+  text-decoration: none;
 }
 
-.copy-btn:hover, .mail-btn:hover { background: white; color: var(--accent-2); }
+.copy-btn:hover,
+.mail-btn:hover {
+  background: white;
+  color: var(--accent-2);
+}
 
-/* --- Mobile Responsive --- */
+/* =========================================================
+   MOBILE RESPONSIVE
+   ========================================================= */
+
 @media (max-width: 768px) {
-  .bento-grid { display: flex; flex-direction: column; }
-  h1 { font-size: 3rem; }
-  .module { min-height: auto; }
-  .hero-module { min-height: 300px; }
-  .project-module { min-height: auto; padding-bottom: 40px; }
+
+  body {
+    padding: 20px 12px;
+    align-items: flex-start;
+  }
+
+  .bento-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .module {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .hero-module {
+    min-height: 300px;
+  }
+
+  .project-module {
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+
+  .stack-module {
+    min-height: auto;
+  }
+
+  .skills-container {
+    gap: 16px;
+  }
+
+  .skill-tags span {
+    font-size: 0.68rem;
+    padding: 6px 9px;
+  }
+
+  .project-content h2 {
+    font-size: 1.7rem;
+  }
+
+  .bio-text {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE DEVICES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  body {
+    padding: 15px 10px;
+  }
+
+  .module {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  .hero-sub {
+    font-size: 0.8rem;
+  }
+
+  .skill-tags {
+    gap: 6px;
+  }
+
+  .skill-tags span {
+    font-size: 0.65rem;
+    padding: 6px 8px;
+  }
+
+  .project-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .project-content p {
+    font-size: 0.85rem;
+  }
 }
